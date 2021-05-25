@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from './Button'
 const UserForm = (props) => {
     const [first_name, set_first_name] = useState('')
     const [last_name, set_last_name] = useState('')
@@ -31,7 +32,7 @@ const UserForm = (props) => {
               <input value={email} 
                onChange={(e)=> set_email(e.target.value)}
               />
-              <button>add</button>
+              <Button text='add'></Button>
           </form>
       </div>
     )

@@ -1,7 +1,8 @@
-import './App.css';
+// import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import UserForm from './UserForm';
+import Button from './Button'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -48,8 +49,8 @@ function App() {
         <div key={user.id}>
           {user.email}: id: {user.id}
           <p>
-            <span onClick={()=> deleteUser(user.id)}>delete</span>
-            <span>update</span>
+            <Button text='delete' onClick={()=> deleteUser(user.id)}></Button>
+            <Button text='update'></Button>
             </p>
         </div>
       )
@@ -63,9 +64,10 @@ function App() {
   console.log('about to render to DOM')
   return (
     <div className="App">
-      <button onClick={()=> setShowForm(!showForm)}>
-         {showForm ? "hide form" : "show form"}
-      </button>
+      <Button 
+       text={showForm ? "hide form" : "show form"} 
+       onClick={()=> setShowForm(!showForm)}>
+      </Button>
       { showForm && <UserForm addUser={addUser} /> }
       <h1>Users</h1>
       {renderUsers()}
