@@ -1,9 +1,11 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import UserForm from './UserForm';
 
 function App() {
   const [users, setUsers] = useState([])
+  const [showForm, setShowForm] = useState(true)
   const [loading, setLoading] = useState(true)
   // the first param is a function that will be called when 
   // component mounts... (for know)
@@ -53,10 +55,18 @@ function App() {
       )
     })
   }
+  const addUser = (user) =>{
+    console.log(user)
+    setUsers([user, ...users ])
+  }
   
   console.log('about to render to DOM')
   return (
     <div className="App">
+      <button onClick={()=> setShowForm(!showForm)}>
+         {showForm ? "hide form" : "show form"}
+      </button>
+      { showForm && <UserForm addUser={addUser} /> }
       <h1>Users</h1>
       {renderUsers()}
     </div>
